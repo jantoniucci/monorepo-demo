@@ -1,0 +1,44 @@
+swagger: "2.0"
+info:
+  description: "This is a naif API to register a new user"
+  version: "0.0.1"
+  title: "User-onboarding"
+host: "localhost:8888"
+basePath: "/api"
+schemes:
+- "http"
+paths:
+  /users:
+    post:
+      tags:
+      - "user"
+      summary: "Create user"
+      description: "This can only be done by the logged in user."
+      operationId: "createUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "../../../../entities/user/User.yaml"
+      responses:
+        default:
+          description: "successful operation"
+        401:
+          description: "Invalid data supplied"
+securityDefinitions:
+  petstore_auth:
+    type: "oauth2"
+    authorizationUrl: "http://petstore.swagger.io/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:pets: "modify pets in your account"
+      read:pets: "read your pets"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
