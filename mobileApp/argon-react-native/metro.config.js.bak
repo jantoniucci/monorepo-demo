@@ -1,0 +1,18 @@
+const path = require('path');
+
+// react-native >= 0.57
+
+const extraNodeModules = {
+  'qb-core': path.resolve(__dirname + '../../../contracts/sync-api-rest/user/onboarding/consumers/mobileApp'),
+};
+const watchFolders = [
+  path.resolve(__dirname + '../../../contracts/sync-api-rest/user/onboarding/consumers/mobileApp')
+];
+
+module.exports = {
+  resolver: {
+    extraNodeModules,
+  },
+  watchFolders
+};
+
